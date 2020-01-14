@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head>
+<body>
+<nav th:replace="fragments :: nav"></nav>
+<div class="container">
+    <div id="signupbox" style="margin-top:50px"
+         class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Suivi de projet</div>
+            </div>
+            <div class="row">
+	            <div class="col-sm-12">
+	               <h2>Projet doit terminer à :</h2> 
+	                <div class="well">
+	                    <p th:text="${map.get('shouldFinish')}"></p>
+	                </div>
+	
+	               </div>
+	               
+	               <div class="col-sm-12">
+	               <h2>Délai des tâches :</h2> 
+	                <div class="well">
+	                    <p th:text="${map.get('finishDates')}"></p>
+	                </div>
+	
+	               </div>
+	               
+	               <div class="col-sm-12">
+	               <h2>Projet se terminera à :</h2> 
+	                <div class="well">
+	                    <p th:text="${map.get('willFinish')}"></p>
+	                </div>
+	
+	               </div>
+	               
+	               <div class="col-sm-12">
+	               <h2>Délai réel du projet:</h2> 
+	                <div class="well">
+	                    <p th:text="${map.get('realFinishDates')}"></p>
+	                </div>
+	
+	               
+	               
+	              
+	
+	               </div>
+            </div>
+            
+            
+              
+            
+            
+            
+            
+        </div>
+     </div>
+     </div>
+
+</body>
+</html>

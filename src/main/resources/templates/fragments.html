@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<nav th:fragment="nav" class="navbar navbar-light" style="background-color: #B7CADA;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          
+            <a class="navbar-brand" href="/">
+                <img th:src="@{/../favicon.ico}" width="35" height="35">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="hasAuthority('Admin')" sec:authorize="hasAuthority('Manager')" sec:authorize="hasAuthority('Collaborator')"><a class="navbar-brand" href="/profile">Profil</a></li>
+                <li sec:authorize="hasAuthority('Admin')" sec:authorize="hasAuthority('Manager')" sec:authorize="hasAuthority('Collaborator')"><a class="navbar-brand" href="/projects">Projets</a></li>
+             
+            </ul>
+            <form class="navbar-form navbar-left" method="get" action="/search">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="p" placeholder="Search a project" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Chercher</button>
+            </form>
+            <div sec:authorize="isAuthenticated()" class="dropdown nav navbar-nav navbar-right">
+                <button class="btn btn-link btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                    <img th:src="@{/img/img_avatar2.png}" width="25" class="img-circle"/>
+                    <span sec:authentication="name"></span> <span class="caret"></span></button>
+
+                <ul class="dropdown-menu">
+                    
+                   
+                    <li>
+                        <a href="/profile"><span class="glyphicon glyphicon-user"></span>Profil</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/logout"><span class="glyphicon glyphicon-log-out"></span>Sign out</a>
+                    </li>
+                </ul>
+            </div>
+            <ul sec:authorize="!isAuthenticated()" class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/signin">Sign in</a>
+                </li>
+                <li>
+                    <a href="/signup">Sign up</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<footer  sec:authorize="hasAuthority('Admin')" sec:authorize="hasAuthority('Manager')" sec:authorize="hasAuthority('Collaborator')" th:if="!${visitor}" class="jumbotron" th:fragment="footer">
+    <div class="container">
+        <div class="row">
+            
+            <div id="contact" class="col-sm-6">
+                <h3>Ajouter un commentaire :</h3>
+                <form action="/message" method="get">
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="msg">Message:</label>
+                        <textarea type="text" class="form-control" id="msg" name="msg" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</footer>
+
+</body>
+</html>

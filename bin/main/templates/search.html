@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head>
+<body>
+<nav th:replace="fragments :: nav"></nav>
+<div class="container text-center">
+    <h2 class=" jumbotron alert alert-info">Résultats pour : <span class="well well-sm" th:text="${keyword}"></span>
+    </h2>
+    <div class="pre-scrollable">
+        <table class="table table-hover table-striped">
+            <tr class="success">
+                <td class="col-sm-2">Nom</td>
+                <td class="col-sm-8">Description</td>
+                <td>Statut</td>
+            </tr>
+            <tr th:each="project : ${projects}">
+                <td>
+                    <a th:href="@{'/projects/' + ${project.id}}" th:text="${project.name}"></a>
+                </td>
+                <td th:text="${project.description}"></td>
+                <td th:text="${project.state.name}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+.marginCostum{
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+.marginCos{
+    margin-top: 40px;
+    padding-left: 80px;
+}
+.jumbotron{
+ background: url(./img/ibanner-bg.jpg) fixed center no-repeat;
+ background-size: cover;
+}
